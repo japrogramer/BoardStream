@@ -1,6 +1,8 @@
 from .base import *  # noqa
 from .base import env
 
+import socket
+
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
@@ -13,6 +15,7 @@ ALLOWED_HOSTS = [
     "0.0.0.0",
     "127.0.0.1",
 ]
+ALLOWED_HOSTS += [socket.gethostname(), socket.gethostbyname(socket.gethostname()), '*']
 
 # CACHES
 # ------------------------------------------------------------------------------

@@ -71,6 +71,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'medicalboard.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'stream_django',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -252,3 +253,7 @@ SOCIALACCOUNT_ADAPTER = 'medicalboard.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# Stream
+STREAM_API_KEY = 'my_api_key'
+STREAM_API_SECRET = 'my_api_secret'

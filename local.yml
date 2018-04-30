@@ -1,4 +1,4 @@
-version: '2'
+version: '3.2'
 
 volumes:
   postgres_data_local: {}
@@ -41,7 +41,7 @@ services:
     depends_on:
       - redis
       - postgres
-      
+
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
@@ -54,7 +54,7 @@ services:
     depends_on:
       - redis
       - postgres
-      
+
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
