@@ -7,10 +7,9 @@
       <div class="user">
       {% include "users/stream/_user.html" with user=one %}
       <div class="follow-button">
-       <form action="{% if followed %}{% url 'users:unfollow' one.id %}{% else %}{% url 'users:follow' %}{% endif %}" method="post">
+       <form action="{% if followed %}{% url 'users:unfollow' one.id %}{% else %}{% url 'users:follow' %}{% endif %}" method="POST">
         {% csrf_token %}
         <input type="hidden" id="id_target" name="target" value="{{one.id}}">
-        <input type="hidden" id="id_user" name="user" value="{{user.id}}">
         {% if followed %}
         <button type="submit" class="btn btn-primary" value="Delete" />
           Unfollow
