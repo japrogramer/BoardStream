@@ -12,7 +12,6 @@ class Panel(models.Model, Activity):
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.CharField(max_length=250)
-    comments =  models.ForeignKey('Panel.Comments', on_delete=models.CASCADE)
 
     @property
     def activity_actor_attr(self):
@@ -30,6 +29,7 @@ class Panel(models.Model, Activity):
 
 
 class Comments(models.Model, Activity):
+    panel =  models.ForeignKey('Panel.Panel', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.CharField(max_length=250)
