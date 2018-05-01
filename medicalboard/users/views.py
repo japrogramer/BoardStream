@@ -101,7 +101,7 @@ class UnfollowView(DeleteView):
 
 
 class DiscoverView(TemplateView):
-    template_name = 'users/streams/follow_form.html'
+    template_name = 'users/stream/follow_form.html'
 
     def get_context_data(self):
         context = super(DiscoverView, self).get_context_data()
