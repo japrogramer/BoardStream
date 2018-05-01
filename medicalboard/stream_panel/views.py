@@ -20,7 +20,7 @@ Comments = apps.get_model('stream_panel', 'Comments')
 class CommentsView(CreateView):
     fields= ['text']
     model = Comments
-    success_url = reverse_lazy('timeline_feed')
+    success_url = reverse_lazy('users:timeline_feed')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
