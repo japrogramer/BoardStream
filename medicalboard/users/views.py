@@ -63,7 +63,7 @@ class TimelineView(CreateView):
     template_name = 'users/stream/timeline.html'
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.author = self.request.user
         return super(TimelineView, self).form_valid(form)
 
     def get_context_data(self, form=None):
