@@ -22,13 +22,6 @@
       {% endautoescape %}
     </div>
     <div class="activity-text col-xs-10">
-        <ul>
-          {% for comment in panel.comments_set.all %}
-          <li>
-              {{ comment }}
-          </li>
-          {% endfor %}
-        </ul>
         {% include 'stream_panel/_comments.html' %}
     </div>
   </div>

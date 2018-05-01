@@ -1,3 +1,9 @@
 {% with activity.object as panel %}
-    {% include 'stream_panel/_comments.html' %}
+    <ul>
+      {% for comment in panel.comments_set.all %}
+      <li>
+          {{ comment }}
+      </li>
+      {% endfor %}
+    </ul>
 {% endwith %}
