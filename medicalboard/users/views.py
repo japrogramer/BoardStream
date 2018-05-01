@@ -55,10 +55,11 @@ class UserListView(LoginRequiredMixin, ListView):
 
 
 class TimelineView(CreateView):
+    # might have to move this view to Panels
     fields= ['text']
     model = Panel
     success_url = reverse_lazy('timeline_feed')
-    template_name = 'stream_panel/timeline.html'
+    template_name = 'users/stream/timeline.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -99,7 +100,7 @@ class UnfollowView(DeleteView):
 
 
 class DiscoverView(TemplateView):
-    template_name = 'stream_panel/follow_form.html'
+    template_name = 'users/streams/follow_form.html'
 
     def get_context_data(self):
         context = super(DiscoverView, self).get_context_data()
