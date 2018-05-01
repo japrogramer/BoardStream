@@ -17,6 +17,16 @@ Panel = apps.get_model('stream_panel', 'Panel')
 Comments = apps.get_model('stream_panel', 'Comments')
 
 
+class PanelView(CreateView):
+    fields= ['text']
+    model = Panel
+    success_url = reverse_lazy('users:timeline_feed')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(CommentsView, self).form_valid(form)
+
+
 class CommentsView(CreateView):
     fields= ['text']
     model = Comments
