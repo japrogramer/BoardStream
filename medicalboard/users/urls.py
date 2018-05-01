@@ -16,7 +16,7 @@ urlpatterns = [
         name="detail",
     ),
     path('discover/', login_required(views.DiscoverView.as_view()), name='discover'),
-    path('timeline/', login_required(views.TimelineView.as_view()), name='timeline_feed'),
+    url('timeline/', login_required(views.TimelineView.as_view()), name='timeline_feed'),
     path('follow/', login_required(views.FollowView.as_view()), name='follow'),
     re_path(r'^unfollow/(?P<target_id>\d+)/', login_required(views.UnfollowView.as_view()),
         name='unfollow'),
