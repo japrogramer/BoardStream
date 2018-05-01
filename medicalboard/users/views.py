@@ -81,9 +81,10 @@ class TimelineView(CreateView):
 
 
 class FollowView(CreateView):
-    form_class = FollowForm
+    fields = ('target',)
     model = Follow
     success_url = reverse_lazy('users:timeline_feed')
+    template_name = 'users/stream/follow_form.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -93,15 +94,16 @@ class FollowView(CreateView):
 class UnfollowView(DeleteView):
     model = Follow
     success_url = reverse_lazy('users:timeline_feed')
+    template_name = 'users/stream/follow_form.html'
+
+    def get(self, request, *args, **kwargs):
+        __import__('pdb').set_trace()
 
     def get_object(self):
         target_id = self.kwargs['target_id']
-        return self.get_queryset().get(target__id=target_id, user=self.request.user)
-
-    def get_response(self):
-        __import__('pdb').set_trace()
-        ...
-
+        deleteme = self.get_queryset().get(target__id=target_id, user=self.request.user)
+        return deleteme
+        # return self.get_queryset().get(target__id=target_id)
 
 
 class DiscoverView(TemplateView):
