@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, DeleteView, FormView
 from stream_django.enrich import Enrich
 from stream_django.feed_manager import feed_manager
 
-from .models import User
+from .models import User, Follow
 from .forms import FollowForm
 
 
