@@ -9,7 +9,7 @@ app_name = "users"
 urlpatterns = [
     path('discover/', login_required(views.DiscoverView.as_view()), name='discover'),
     url('timeline/', login_required(views.TimelineView.as_view()), name='timeline_feed'),
-    path('follow/', login_required(views.FollowView.as_view()), name='follow'),
+    url('follow/', login_required(views.FollowView.as_view()), name='follow'),
     re_path(r'^unfollow/(?P<target_id>\d+)/', login_required(views.UnfollowView.as_view()),
         name='unfollow'),
     url(regex=r"^$", view=views.UserListView.as_view(), name="list"),
