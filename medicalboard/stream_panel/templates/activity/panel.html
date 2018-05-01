@@ -1,4 +1,3 @@
-{% load filters %}
 {% load socialaccount %}
 {% with activity.object as panel %}
 <div class="activity">
@@ -16,10 +15,10 @@
     </div>
     <div class="activity-text col-xs-10">
         <div class="user-name">
-          <a href="/user/{{ panel.user.username }}">{{ panel.user.username }}</a> <span class="time-paneled">{{ panel.created_at|time_difference }}</span>
+          <a href="/user/{{ panel.author.pk }}">{{ panel.author.username }}</a> <span class="time-paneled">{{ panel.created_at }}</span>
         </div>
       {% autoescape off %}
-        {{ panel }}
+        {{ panel.text }}
       {% endautoescape %}
     </div>
   </div>
