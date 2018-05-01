@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from stream_django.activity import Activity
+from stream_django.feed_manager import feed_manager
 import uuid
 
 
