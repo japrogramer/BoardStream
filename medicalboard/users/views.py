@@ -75,7 +75,7 @@ class TimelineView(CreateView):
 
         context['activities'] = enriched_activities
         context['login_user'] = self.request.user
-        context['hashtags'] = Hashtag.objects.order_by('-occurrences')
+        # context['hashtags'] = Hashtag.objects.order_by('-occurrences')
 
         return context
 
