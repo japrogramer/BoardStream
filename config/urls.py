@@ -19,6 +19,11 @@ urlpatterns = [
         r"^users/",
         include("medicalboard.users.urls", namespace="users"),
     ),
+    # Panel management
+    url(
+        r"^panel/",
+        include("medicalboard.stream_panel.urls", namespace="panels"),
+    ),
     url(r"^accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(
