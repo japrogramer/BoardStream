@@ -65,6 +65,11 @@
                 {# URL provided by django-allauth/account/urls.py #}
                 <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
               </li>
+              <li>
+                <a href="/accounts/github/login/?process=login">
+                  <i class="icon icon-github"></i> Sign in with GitHub
+                </a>
+              </li>
             {% endif %}
           </ul>
         </div>
