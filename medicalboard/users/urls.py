@@ -1,4 +1,7 @@
 from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
+from django.urls import include, re_path, path
+
 
 from . import views
 
@@ -12,4 +15,6 @@ urlpatterns = [
         view=views.UserDetailView.as_view(),
         name="detail",
     ),
+    path('timeline/', login_required(views.TimelineView.as_view()), name='timeline_feed'),
+
 ]

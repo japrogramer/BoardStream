@@ -1,8 +1,19 @@
+from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, FormView
+
+from stream_django.enrich import Enrich
+from stream_django.feed_manager import feed_manager
 
 from .models import User
+
+
+enricher = Enrich()
+
+
+Panel = apps.get_model('stream_panel', 'Panel')
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
@@ -41,3 +52,27 @@ class UserListView(LoginRequiredMixin, ListView):
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
+
+
+class TimelineView(CreateView):
+    fields= ['text']
+    model = Panel
+    success_url = reverse_lazy('timeline_feed')
+    template_name = 'stream_panel/timeline.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TimelineView, self).form_valid(form)
+
+    def get_context_data(self, form=None):
+        context = super(TimelineView, self).get_context_data()
+
+        feeds = feed_manager.get_news_feeds(self.request.user.id)
+        activities = feeds.get('timeline').get()['results']
+        enriched_activities = enricher.enrich_activities(activities)
+
+        context['activities'] = enriched_activities
+        context['login_user'] = self.request.user
+        context['hashtags'] = Hashtag.objects.order_by('-occurrences')
+
+        return context
