@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load activity_tags %}
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-md-3">
+  {% comment "will implement this later" %}
+    {% include 'stream_panel/_user.html' %}
+  {% endcomment %}
+  </div>
+  <div class="col-md-6">
+    <div class="timeline-content">
+      <div class="row">
+        <div class="col-xs-12">
+      {% comment "will implement this later" %}
+          {% include 'stream_panel/_postbox.html' %}
+      {% endcomment %}
+        </div>
+        <div class="col-xs-12">
+          {% for activity in activities %}
+            {% render_activity activity %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+  {% comment "will implement this later" %}
+    {% include 'stream_panel/_hashtags.html' %} 
+  {% endcomment %}
+  </div>
+</div>
+
+</div>
+{% endblock content %}
