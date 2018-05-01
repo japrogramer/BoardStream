@@ -71,6 +71,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'medicalboard.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'medicalboard.stream_panel.apps.PanelConfig',
     'stream_django',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
