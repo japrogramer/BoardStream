@@ -34,5 +34,5 @@ class CommentsView(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        form.instance.panel = self.kwargs['panel_id']
+        form.instance.panel = Panel.objects.get(pk=self.kwargs['panel_id'])
         return super(CommentsView, self).form_valid(form)
