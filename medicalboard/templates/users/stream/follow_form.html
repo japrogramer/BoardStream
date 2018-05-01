@@ -5,7 +5,7 @@
     {% for one, followed in following %}
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="user">
-      {% include "stream_user.html" with user=one %}
+      {% include "users/stream/_user.html" with user=one %}
       <div class="follow-button">
        <form action="{% if followed %}{% url 'unfollow' one.id %}{% else %}{% url 'follow' %}{% endif %}" method="post">
         {% csrf_token %}
