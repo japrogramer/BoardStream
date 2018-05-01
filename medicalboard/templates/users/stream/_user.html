@@ -1,37 +1,21 @@
-{% extends 'base' %}
-{% block content %}
-<div class="container">
-  <div class="row">
-    {% for one, followed in following %}
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="user">
-      {% include "stream_twitter/_user.html" with user=one %}
-      <div class="follow-button">
-       <form action="{% if followed %}{% url 'unfollow' one.id %}{% else %}{% url 'follow' %}{% endif %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" id="id_target" name="target" value="{{one.id}}">
-        <input type="hidden" id="id_user" name="user" value="{{user.id}}">
-        <button type="submit" class="btn btn-primary" value="Create" />
-        {% if followed %}
-          Unfollow
-        {% else %}
-          Follow
-        {% endif %}
-        </button> 
-      </form>
-      </div>
-      </div>
-    </div>
-    {% if forloop.counter|divisibleby:'4' %}
-    <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
-    {% elif forloop.counter|divisibleby:'2' %}
-    <div class="clearfix visible-sm-block"></div>
+{% load socialaccount %}
+{% get_social_accounts user as accounts %}
+
+<div class="user">
+  <div class="user-picture">
+    <a href="/user/{{ user.username }}/">
+    {% if accounts %}
+      <img class="profile-picture img-responsive" alt="Responsive image" class="user-picture" src="{{ accounts.github.0.extra_data.avatar_url }}">
+    {% else %}
+      <img class="profile-picture img-responsive" alt="Responsive image" class="user-picture" src="{{ user.userprofile.picture.url }}">
     {% endif %}
-  {% endfor %}
+    </a>
   </div>
-  <div class="row">
-    <div class="">
+  <div class="user-basic-info">
+    <span class="user-basic-info-name">{{ user.first_name }} {{user.last_name}}</span>
+    <a href="/user/{{ user.username }}/"><span class="user-basic-info-id">@{{ user.username }}</span></a>
+  </div> 
+  <div class="user-description">
+      {{ user.first_name }}
+  </div>
 </div>
-</div>
-</div>
-{% endblock content %}
