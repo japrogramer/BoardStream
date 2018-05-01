@@ -66,7 +66,8 @@ THIRD_PARTY_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
+
+
     'rest_framework',
 ]
 LOCAL_APPS = [
@@ -257,5 +258,5 @@ SOCIALACCOUNT_ADAPTER = 'medicalboard.users.adapters.SocialAccountAdapter'
 # ------------------------------------------------------------------------------
 
 # Stream
-STREAM_API_KEY = 'my_api_key'
-STREAM_API_SECRET = 'my_api_secret'
+STREAM_API_KEY = env('STREAM_API_KEY', default='my_api_key')
+STREAM_API_SECRET = env('STREAM_API_SECRET', default='my_api_secret')
