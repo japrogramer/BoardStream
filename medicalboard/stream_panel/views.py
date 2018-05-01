@@ -23,7 +23,7 @@ class PanelView(CreateView):
     success_url = reverse_lazy('users:timeline_feed')
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.author_id = self.request.user.pk
         return super(CommentsView, self).form_valid(form)
 
 
