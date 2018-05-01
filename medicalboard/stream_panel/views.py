@@ -21,8 +21,8 @@ class CommentsView(CreateView):
     fields= ['text']
     model = Comments
     success_url = reverse_lazy('timeline_feed')
-    template_name = 'stream_twitter/timeline.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        form.instance.panel = self.kwargs['panel_id']
         return super(CommentsView, self).form_valid(form)
