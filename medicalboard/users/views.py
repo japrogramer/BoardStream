@@ -59,7 +59,7 @@ class TimelineView(CreateView):
     # might have to move this view to Panels
     fields= ['text']
     model = Panel
-    success_url = reverse_lazy('timeline_feed')
+    success_url = reverse_lazy('users:timeline_feed')
     template_name = 'users/stream/timeline.html'
 
     def form_valid(self, form):
@@ -83,7 +83,7 @@ class TimelineView(CreateView):
 class FollowView(CreateView):
     form_class = FollowForm
     model = Follow
-    success_url = reverse_lazy('timeline_feed')
+    success_url = reverse_lazy('users:timeline_feed')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -92,7 +92,7 @@ class FollowView(CreateView):
 
 class UnfollowView(DeleteView):
     model = Follow
-    success_url = reverse_lazy('timeline_feed')
+    success_url = reverse_lazy('users:timeline_feed')
 
     def get_object(self):
         target_id = self.kwargs['target_id']
