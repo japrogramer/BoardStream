@@ -1,6 +1,6 @@
 from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 from django.views.generic.edit import CreateView, DeleteView, FormView
 
