@@ -96,3 +96,25 @@ class UnfollowView(DeleteView):
         target_id = self.kwargs['target_id']
         return self.get_queryset().get(target__id=target_id)
 
+
+
+class DiscoverView(TemplateView):
+    template_name = 'stream_panel/follow_form.html'
+
+    def get_context_data(self):
+        context = super(DiscoverView, self).get_context_data()
+
+        users = User.objects.order_by('date_joined')[:50]
+        following = []
+        for i in users:
+            if len(i.followers.filter(user=self.request.user.id)) == 0:
+                following.append((i, False))
+            else:
+                following.append((i, True))
+
+        context['users'] = users,
+        context['form'] = FollowForm()
+        context['login_user'] = self.request.user
+        context['following'] = following
+
+        return context
