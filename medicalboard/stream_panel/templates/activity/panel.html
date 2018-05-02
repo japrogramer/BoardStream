@@ -1,29 +1,31 @@
 {% load socialaccount %}
 {% with activity.object as panel %}
 <div class="activity">
-  <div class="row">
-    <div class="user-container col-xs-2">
-      <div class="user-info">
-        <a href="/user/{{ panel.user.username }}">
-        {% if accounts %}
-          <img class="panel-profile img-responsive" alt="Responsive image" class="user-picture" src="{{ accounts.github.0.extra_data.avatar_url }}">
-        {% else %}
-          <img class="panel-profile img-responsive" alt="Responsive image" src="{{ panel.user.userprofile.picture.url }}">
-        {% endif %}
-        </a>
-      </div>
-    </div>
-    <div class="activity-text col-xs-10">
-        <div class="user-name">
-          <a href="/user/{{ panel.author.pk }}">{{ panel.author.username }}</a> <span class="time-paneled">{{ panel.created_at }}</span>
-        </div>
+  <div class="card" >
+  <div class="card-body">
+    <h5 class="card-title">status {{ panel.user.username }}</h5>
+    {% if accounts %}
+      <img class="panel-profile img-responsive" alt="Responsive image" class="user-picture" src="{{ accounts.github.0.extra_data.avatar_url }}">
+    {% else %}
+      <img class="panel-profile img-responsive" alt="Responsive image" src="{{ panel.user.userprofile.picture.url }}">
+    {% endif %}
+    <h6 class="card-subtitle mb-2 text-muted">{{ panel.created_at }}</h6>
+    <p class="card-text">
       {% autoescape off %}
-        {{ panel.text }}
+    {{ panel.text }}
       {% endautoescape %}
-    </div>
-    <div class="activity-text col-xs-10">
+    </p>
+    <a href="/user/{{ panel.author.pk }}" class="card-link">{{ panel.author.username }}</a> <span class="time-paneled">{{ panel.created_at }}</span>
+    <a href="#" class="card-link">Psudo Comments</a>
+  </div>
+  <ul class="list-group list-group-flush">
+    {% for comment in panel.comments_set.all %}
+      <li class="list-group-item">{{ comment.author }} sayd: {{ comment.text }}</li>
+    {% endfor %}
+    <li class="list-group-item">
         {% include 'stream_panel/_comments.html' %}
-    </div>
+    </li>
+  </ul>
   </div>
 </div>
 {% endwith %}
