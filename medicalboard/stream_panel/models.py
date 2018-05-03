@@ -16,7 +16,7 @@ class Panel(models.Model, Activity):
 
     @property
     def activity_actor_attr(self):
-        return self
+        return self.author
 
     @property
     def activity_notify(self):
@@ -37,7 +37,7 @@ class Comments(models.Model, Activity):
 
     @property
     def activity_actor_attr(self):
-        return self
+        return self.author
 
     @property
     def activity_notify(self):
